@@ -1,0 +1,194 @@
+---
+paths:
+  /api/product/create-product:
+    post:
+      tags:
+        - PRODUCT
+      summary: CREATE PRODUCT ENDPOINT
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: authorization
+          description: access token
+          required: true
+          default: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzIwODQxODB9.60qxpvDKlXV3x4-XDf2GRWgEkuSvL_XuCYPbn5jil-0
+
+        - in: body
+          name: Create product endpoint
+          description: This endpoint creates products for registered users
+          required: true
+          schema:
+            $ref: "#/definitions/createProduct"
+      responses:
+        200:
+          description: Created successfully
+
+  /api/product/get-all-products:
+    get:
+      tags:
+        - PRODUCT
+      summary: GET ALL PRODUCTS ENDPOINT
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: authorization
+          description: access token
+          required: true
+          default: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzIwODQxODB9.60qxpvDKlXV3x4-XDf2GRWgEkuSvL_XuCYPbn5jil-0
+        - in: query
+          name: page
+          type: number
+          default: 1
+          required: true
+        - in: query
+          name: documentCount
+          type: number
+          default: 10
+      responses:
+        200:
+          description: Fetched successfully
+
+  /api/product/get-product-by-id:
+    get:
+      tags:
+        - PRODUCT
+      summary: GET PRODUCT BY ID ENDPOINT
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: authorization
+          description: access token
+          required: true
+          default: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzIwODQxODB9.60qxpvDKlXV3x4-XDf2GRWgEkuSvL_XuCYPbn5jil-0
+        - in: query
+          name: productId
+          type: string
+          default: 64afbc5266f8942f989f615e
+          required: true  
+      responses:
+        200:
+          description: Fetched successfully
+
+  /api/product/update-product:
+    put:
+      tags:
+        - PRODUCT
+      summary: UPDATE PRODUCT ENDPOINT
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: authorization
+          description: access token
+          required: true
+          default: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzIwODQxODB9.60qxpvDKlXV3x4-XDf2GRWgEkuSvL_XuCYPbn5jil-0
+
+        - in: body
+          name: Update product endpoint
+          description: This endpoint updates users product
+          required: true
+          schema:
+            $ref: "#/definitions/updateProduct"
+      responses:
+        200:
+          description: Update successful
+
+  /api/product/delete-product:
+    delete:
+      tags:
+        - PRODUCT
+      summary: DELETE SINGLE PRODUCT BY ID ENDPOINT
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: authorization
+          description: access token
+          required: true
+          default: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzIwODQxODB9.60qxpvDKlXV3x4-XDf2GRWgEkuSvL_XuCYPbn5jil-0
+        - in: body
+          name: Delete product endpoint
+          description: This endpoint deletes single product
+          required: true
+          schema:
+            $ref: "#/definitions/deleteProduct"
+      responses:
+        200:
+          description: Deleted successfully
+
+  /api/product/delete-multiple-products:
+    delete:
+      tags:
+        - PRODUCT
+      summary: DELETE MULTIPLE PRODUCT BY ID ENDPOINT
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: authorization
+          description: access token
+          required: true
+          default: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzIwODQxODB9.60qxpvDKlXV3x4-XDf2GRWgEkuSvL_XuCYPbn5jil-0
+        - in: body
+          name: Delete multiple products endpoint
+          description: This endpoint deletes multiple products
+          required: true
+          schema:
+            $ref: "#/definitions/deleteMultipleProduct"
+      responses:
+        200:
+          description: Deleted successfully
+
+
+definitions:
+  createProduct:
+    type: object
+    properties:
+      name:
+        type: string
+        default: Samsumg Galaxy A1
+      quantity:
+        type: number
+        default: 5
+      unitPrice:
+        type: number
+        default: 190000
+      description:
+        type: string
+        default: A samsumng galaxy A1 with screen guard
+
+  updateProduct:
+    type: object
+    properties:
+      productId:
+        type: string
+        default: 64afbc5266f8942f989f615e
+      name:
+        type: string
+        default: Samsumg Galaxy A1
+      quantity:
+        type: number
+        default: 4
+      unitPrice:
+        type: number
+        default: 190000
+      description:
+        type: string
+        default: A samsumng galaxy A1 with screen guard
+       
+  deleteProduct:
+    type: object
+    properties:
+      productId:
+        type: string
+        default: 64afbc5266f8942f989f615e
+
+  deleteMultipleProduct:
+    type: object
+    properties:
+      arrayOfProductIds:
+        type: array
+        default: ["6176c336c400ae4ff58d2dcd", "6176c336c400ae4ff58d2dcd"]
