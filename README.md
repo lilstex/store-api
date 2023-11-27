@@ -172,6 +172,4 @@ npm test
 3. Regularly update and patch the system to address security vulnerabilities.
 4. Implement secure transmission using HTTPS for all API interactions.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE.md). Feel free to modify and use the code as needed, and contributions are welcome.
+Feel free to modify and use the code as needed, and contributions are welcome.
